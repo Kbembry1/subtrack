@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+import React, { useState } from "react";
+
+export default function App() {
+  const [subscriptions, setSubscriptions] = useState([
+    { name: "Netflix", amount: 15.99, date: "2025-04-01" },
+    { name: "Spotify", amount: 9.99, date: "2025-03-25" },
+  ]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+          SubTrack
+        </h1>
+        <div className="space-y-4">
+          {subscriptions.map((sub, idx) => (
+            <div
+              key={idx}
+              className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center"
+            >
+              <div>
+                <h2 className="text-xl font-semibold text-gray-700">
+                  {sub.name}
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Next payment: {sub.date}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-bold text-gray-800">
+                  ${sub.amount.toFixed(2)}
+                </p>
+                <button className="mt-2 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
